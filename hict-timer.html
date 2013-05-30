@@ -1,0 +1,137 @@
+<html>
+<head>
+	<title>7-minutes of pain</title>
+	<script type="text/javascript">
+		var WORKOUTS = [
+			{name: "Jumping jacks", 
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT3.jpeg"},
+			{name: "Wall sit",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT4.jpeg"},
+			{name: "Push-up",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT5.jpeg"},
+			{name: "Abdominal crunch",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT6.jpeg"},
+			{name: "Step-up onto chair",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT7.jpeg"},
+			{name: "Squat",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT8.jpeg"},
+			{name: "Triceps dip on chair",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT9.jpeg"},
+			{name: "Plank",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT10.jpeg"},
+			{name: "High knees running in place",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT11.jpeg"},
+			{name: "Lunge",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT12.jpeg"},
+			{name: "Push-up and rotation",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT13.jpeg"},
+			{name: "Side plank",
+				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT14.jpeg"},
+		];
+		var READY = "Get Ready!";
+		var PAUSE = "Pause";
+		var DONE = "Done!";
+
+		var READY_DURATION = 5000;
+		var WORKOUT_DURATION = 30000;
+		var PAUSE_DURATION = 10000;
+
+	    var ctx = new(window.audioContext || window.webkitAudioContext);
+
+		function start() {
+			document.getElementById('workout').innerHTML = READY;
+			document.getElementById('next').innerHTML = WORKOUTS[0];
+			document.getElementById('image').src = WORKOUTS[0].url;
+			timer(READY_DURATION, function() {start_workout(0)});
+		}
+
+		function start_workout(id) {
+			if (id > WORKOUTS.length - 1) {
+				done();
+				return;
+			}
+
+			document.getElementById('workout').innerHTML = WORKOUTS[id].name;
+			document.getElementById('next').innerHTML = PAUSE;
+			beep(1, 100);
+			timer(WORKOUT_DURATION, function() {start_pause(id)});
+		}
+
+		function start_pause(id) {
+			document.getElementById('workout').innerHTML = PAUSE;
+			document.getElementById('next').innerHTML = WORKOUTS[id+1].name;
+			document.getElementById('image').src = WORKOUTS[id+1].url;
+			beep(0, 300);
+			timer(PAUSE_DURATION, function() {start_workout(id+1)});
+		}
+
+		function beep(type, duration) {
+			type = type || 0;
+			duration = duration || 100;
+	        var osc = ctx.createOscillator();
+
+	        osc.type = type;
+	        osc.connect(ctx.destination);
+	        osc.noteOn(0);
+
+	        setTimeout(function() {
+	        	osc.noteOff(0);
+	        }, duration);
+
+	        return;
+		}
+
+		function timer(duration, callback) {
+			duration = duration || 0;
+			var start_date = new Date().getTime();
+			var interval;
+			var element = document.getElementById('time');
+			var update_timer = function() {
+				var remaining_duration = duration + start_date - new Date().getTime();
+				if (remaining_duration <= 0) {
+					window.clearInterval(interval);
+					callback();
+				} else {
+					element.innerHTML = (remaining_duration / 1000).toFixed(1);
+				}
+			};
+
+			interval = setInterval(update_timer, 100);
+		}
+
+		function done() {
+			beep(0, 500);
+			document.getElementById('workout').innerHTML = DONE;
+		}
+
+		window.onload = start;
+	</script>
+
+	<style type="text/css">
+		body {
+			width: 100%;
+			text-align: center;
+			font-family: sans-serif;
+			padding: 2em;
+		}
+
+		#workout {
+			font-size: 3em;
+		}
+
+		#time {
+			font-size: 5em;
+		}
+
+		#image {
+			height: 30%;
+		}
+	</style>
+</head>
+<body>
+	<p id="workout"></p>
+	<p id="next"></p>
+	<p id="time"></p>
+	<p><img id="image" href="#"/></p>
+</body>
+</html>
