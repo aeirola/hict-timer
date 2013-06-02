@@ -4,29 +4,29 @@
 	<script type="text/javascript">
 		var WORKOUTS = [
 			{name: "Jumping jacks", 
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT3.jpeg"},
+				url: "images/1.jpeg"},
 			{name: "Wall sit",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT4.jpeg"},
+				url: "images/2.jpeg"},
 			{name: "Push-up",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT5.jpeg"},
+				url: "images/3.jpeg"},
 			{name: "Abdominal crunch",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT6.jpeg"},
+				url: "images/4.jpeg"},
 			{name: "Step-up onto chair",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT7.jpeg"},
+				url: "images/5.jpeg"},
 			{name: "Squat",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT8.jpeg"},
+				url: "images/6.jpeg"},
 			{name: "Triceps dip on chair",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT9.jpeg"},
+				url: "images/7.jpeg"},
 			{name: "Plank",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT10.jpeg"},
+				url: "images/8.jpeg"},
 			{name: "High knees running in place",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT11.jpeg"},
+				url: "images/9.jpeg"},
 			{name: "Lunge",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT12.jpeg"},
+				url: "images/10.jpeg"},
 			{name: "Push-up and rotation",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT13.jpeg"},
+				url: "images/11.jpeg"},
 			{name: "Side plank",
-				url: "http://images.journals.lww.com/acsm-healthfitness/Original.00135124-201305000-00005.TT14.jpeg"},
+				url: "images/12.jpeg"},
 		];
 		var READY = "Get Ready!";
 		var PAUSE = "Pause";
@@ -40,7 +40,7 @@
 
 		function start() {
 			document.getElementById('workout').innerHTML = READY;
-			document.getElementById('next').innerHTML = WORKOUTS[0];
+			document.getElementById('next').innerHTML = WORKOUTS[0].name;
 			document.getElementById('image').src = WORKOUTS[0].url;
 			timer(READY_DURATION, function() {start_workout(0)});
 		}
