@@ -32,9 +32,9 @@
 		var PAUSE = "Pause";
 		var DONE = "Done!";
 
-		var READY_DURATION = 5000;
-		var WORKOUT_DURATION = 30000;
-		var PAUSE_DURATION = 10000;
+		var READY_DURATION = 500;
+		var WORKOUT_DURATION = 3000;
+		var PAUSE_DURATION = 1000;
 
 	    var ctx = new(window.audioContext || window.webkitAudioContext);
 
@@ -46,15 +46,15 @@
 		}
 
 		function start_workout(id) {
-			if (id > WORKOUTS.length - 1) {
-				done();
-				return;
-			}
-
 			document.getElementById('workout').innerHTML = WORKOUTS[id].name;
 			document.getElementById('next').innerHTML = PAUSE;
 			beep(1, 100);
-			timer(WORKOUT_DURATION, function() {start_pause(id)});
+
+			if (id >= WORKOUTS.length - 1) {
+				timer(WORKOUT_DURATION, done);
+			} else {
+				timer(WORKOUT_DURATION, function() {start_pause(id)});
+			}
 		}
 
 		function start_pause(id) {
