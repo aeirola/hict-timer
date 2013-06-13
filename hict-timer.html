@@ -2,35 +2,207 @@
 <head>
 	<title>7-minutes of pain</title>
 	<script type="text/javascript">
+		var START_WORKOUT = 0;
 		var WORKOUTS = [
-			{name: "Jumping jacks", 
-				url: "images/1.jpeg"},
+			{name: "Jumping jacks",
+				image: {
+					image: 'front',
+					animations: {
+						body_translate: "0 ; 0 -300 ; 0 50 ; 0 -300 ; 0",
+						right_shoulder: "0 ; -50 ; 0",
+						left_shoulder: "0 ; 50 ; 0",
+						right_elbow: "0 ; -30 ; 0",
+						left_elbow: "0 ; 30 ; 0",
+						right_wrist: "0 ; -30 ; 0",
+						left_wrist: "0 ; 30 ; 0",
+
+						right_hip: "0 ; -30 ; 0",
+						left_hip: "0 ; 30 ; 0",
+						right_ankle: "0 ; 10 ; 0",
+						left_ankle: "0 ; -10 ; 0",
+					}
+				}
+			},
 			{name: "Wall sit",
-				url: "images/2.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 400",
+						right_hip: "-90",
+						left_hip: "-90",
+						right_knee: "90",
+						left_knee: "90"
+					}
+				}},
 			{name: "Push-up",
-				url: "images/3.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_rotate: "90 ; 70 ; 90",
+						body_translate: "0 700 ; 0 400 ; 0 700",
+						right_shoulder: "90 ; 0 ; 90",
+						left_shoulder: "90 ; 0 ; 90",
+						right_elbow: "-90 ; 0 ; -90",
+						left_elbow: "-90 ; 0 ; -90",
+						right_wrist: "-90 ; -70 ; -90",
+						left_wrist: "-90 ; -70 ; -90"
+
+					}
+				}
+			},
 			{name: "Abdominal crunch",
-				url: "images/4.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 800",
+						body_rotate: "-90 ; -45 ; -90",
+						right_shoulder: "45 ; 0 ; 45",
+						left_shoulder: "45 ; 0 ; 45",
+						right_hip: "-45 ; -90 ; -45",
+						left_hip: "-45 ; -90 ; -45",
+						right_knee: "90",
+						left_knee: "90",
+						right_ankle: "45",
+						left_ankle: "45"
+					}
+				}},
 			{name: "Step-up onto chair",
-				url: "images/5.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 ; 0 ; 330 -500 ; 0 ; 0",
+						right_shoulder: "90 ",
+						left_shoulder: "90",
+						right_hip: "0 ; -90 ; 0 ; 0 ; 0",
+						left_hip: "0 ; 0 ; 0 ; -90 ; 0",
+						right_knee: "0 ; 90 ; 0 ; 0 ; 0",
+						left_knee: "0 ; 0 ; 0 ; 90 ; 0 "
+					}
+				}},
 			{name: "Squat",
-				url: "images/6.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 ; -200 500 ; 0",
+						body_rotate: "0 ; 20 ; 0",
+						right_shoulder: "0 ; -20 ; 0",
+						left_shoulder: "0 ; -20 ; 0",
+						right_hip: "0 ; -120 ; 0 ",
+						left_hip: "0 ; -120 ; 0",
+						right_knee: "0 ; 120 ; 0",
+						left_knee: "0 ;	 120 ; 0 ",
+						right_ankle: "0 ; -20 ; 0",
+						left_ankle: "0 ; -20 ; 0 "
+					}
+				}},
 			{name: "Triceps dip on chair",
-				url: "images/7.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 100 ; 0 500 ; 0 100",
+						body_rotate: "-10",
+						right_shoulder: "110 ; 170 ; 110",
+						left_shoulder: "110 ; 170 ; 110",
+						right_elbow: "0 ; -70 ; 0",
+						left_elbow: "0 ; -70 ; 0",
+						right_wrist: "40 ; 70 ; 40",
+						left_wrist: "40 ; 70 ; 40",
+						right_hip: "-20 ; -80 ; -20",
+						left_hip: "-20 ; -80 ; -20",
+						right_knee: "0 ; 60 ; 0",
+						left_knee: "0 ;	 60 ; 0 ",
+						right_ankle: "0 ; -20 ; 0",
+						left_ankle: "0 ; -20 ; 0 "
+					}
+				}},
 			{name: "Plank",
-				url: "images/8.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 650",
+						body_rotate: "85",
+						right_shoulder: "10",
+						left_shoulder: "10",
+						right_elbow: "-90",
+						left_elbow: "-90"
+					}
+				}},
 			{name: "High knees running in place",
-				url: "images/9.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 ; 0 -100 ; 0 ; 0 -100 ; 0",
+						right_shoulder: "0 ; 90 ; 0",
+						left_shoulder: "90 ; 0 ; 90",
+						right_elbow: "-90 ; 0 ; -90",
+						left_elbow: "0 ; -90 ; 0",
+						right_hip: "0 ; -90 ; 0",
+						left_hip: "-90 ; 0 ; -90",
+						right_knee: "0 ; 90 ; 0",
+						left_knee: "90 ; 0 ; 90"
+					}
+				}},
 			{name: "Lunge",
-				url: "images/10.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+						body_translate: "0 ; 300 400 ; 0",
+						right_shoulder: "135",
+						left_shoulder: "135",
+						right_elbow: "-90",
+						left_elbow: "-90",
+						right_wrist: "-45",
+						left_wrist: "-45",
+						right_hip: "0 ; -90 ; 0 ",
+						left_hip: "0 ; 0 ; 0",
+						right_knee: "0 ; 110 ; 0",
+						left_knee: "0 ;	 110 ; 0 "
+					}
+				}},
 			{name: "Push-up and rotation",
-				url: "images/11.jpeg"},
+				image: {
+					image: 'side',
+					animations: {
+
+						body_rotate: "90 ; 75 ; 75 ; 75 ; 90",
+						body_translate: "0 700 ; 0 450 ; 0 450 ; 0 450 ; 0 700",
+						right_shoulder: "90 ; 0 ; 180 ; 0 ; 90",
+						left_shoulder: "90 ; 0 ; 0 ; 0 ; 90",
+						right_elbow: "-90 ; 0 ; 0 ; 0 ; -90",
+						left_elbow: "-90 ; 0 ; 0 ; 0 ; -90",
+						right_wrist: "-90 ; -70 ; 0 ; -70 ; -90",
+						left_wrist: "-90 ; -70 ; -70 ; -70 ; -90"
+					}
+				}},
 			{name: "Side plank",
-				url: "images/12.jpeg"},
+				image: {
+					image: 'front',
+					animations: {
+						body_translate: "0 600",
+						body_rotate: "75",
+						right_shoulder: "10",
+						left_shoulder: "-93",
+						right_elbow: "95",
+						left_elbow: "0",
+						right_hip: "0",
+						left_hip: "-6",
+					}
+				}}
 		];
 		var READY = "Get Ready!";
 		var PAUSE = "Pause";
-		var DONE = "Done!";
+		var DONE = {name: "Done!", 
+					image: {
+						image: 'front',
+						animations: {
+							right_shoulder: "-50 ; -80 ; -50",
+							left_shoulder: "50 ; 80 ; 50",
+							right_elbow: "0 ; -30 ; 0",
+							left_elbow: "0 ; 30 ; 0",
+							right_wrist: "0 ; -10 ; 0",
+							left_wrist: "0 ; 10 ; 0",
+						}
+					}};
 
 		var READY_DURATION = 5000;
 		var WORKOUT_DURATION = 30000;
@@ -39,30 +211,47 @@
 	    var ctx = new(window.audioContext || window.webkitAudioContext);
 
 		function start() {
-			document.getElementById('workout').innerHTML = READY;
-			document.getElementById('next').innerHTML = WORKOUTS[0].name;
-			document.getElementById('image').src = WORKOUTS[0].url;
-			timer(READY_DURATION, function() {start_workout(0)});
+			set_current_text(READY);
+			set_next_text(WORKOUTS[START_WORKOUT].name);
+			set_image(WORKOUTS[START_WORKOUT].image);
+
+			timer(READY_DURATION, function() {start_workout(START_WORKOUT);});
 		}
 
 		function start_workout(id) {
-			document.getElementById('workout').innerHTML = WORKOUTS[id].name;
-			document.getElementById('next').innerHTML = PAUSE;
-			beep(1, 100);
+			set_current_text(WORKOUTS[id].name);
+			set_next_text(PAUSE);
 
+			beep(1, 100);
+			timer(WORKOUT_DURATION, function() {stop_workout(id);});
+		}
+
+		function stop_workout(id) {
 			if (id >= WORKOUTS.length - 1) {
-				timer(WORKOUT_DURATION, done);
+				done();
 			} else {
-				timer(WORKOUT_DURATION, function() {start_pause(id)});
+				start_pause(id);
 			}
 		}
 
 		function start_pause(id) {
-			document.getElementById('workout').innerHTML = PAUSE;
-			document.getElementById('next').innerHTML = WORKOUTS[id+1].name;
-			document.getElementById('image').src = WORKOUTS[id+1].url;
+			set_current_text(PAUSE);
+			set_next_text(WORKOUTS[id+1].name);
+			set_image(WORKOUTS[id+1].image);
+
 			beep(0, 300);
-			timer(PAUSE_DURATION, function() {start_workout(id+1)});
+			timer(PAUSE_DURATION, function() {stop_pause(id)});
+		}
+
+		function stop_pause(id) {
+			start_workout(id+1);
+		}
+
+		function done() {
+			beep(0, 500);
+			set_current_text(DONE.name);
+			set_next_text("");
+			set_image(DONE.image);
 		}
 
 		function beep(type, duration) {
@@ -77,8 +266,34 @@
 	        setTimeout(function() {
 	        	osc.noteOff(0);
 	        }, duration);
+		}
 
-	        return;
+		function set_current_text(text) {
+			document.getElementById('workout').innerHTML = text;
+		}
+
+		function set_next_text(text) {
+			document.getElementById('next').innerHTML = text;
+
+		}
+
+		function set_image(image) {
+			var images = document.getElementsByTagName('svg');
+			for (var i = 0; i < images.length; i++) {
+			    images[i].style.display = 'none';
+			}
+
+			var svg = document.getElementById(image.image);
+			svg.style.display = 'block'
+
+			var transforms = document.getElementsByTagName('animateTransform');
+			for (var i = 0; i < transforms.length; i++) {
+			    transforms[i].setAttribute('values', '0');
+			}
+
+			for (var animation in image.animations) {
+				svg.getElementById(animation).setAttribute('values', image.animations[animation])
+			}
 		}
 
 		function timer(duration, callback) {
@@ -97,11 +312,6 @@
 			};
 
 			interval = setInterval(update_timer, 100);
-		}
-
-		function done() {
-			beep(0, 500);
-			document.getElementById('workout').innerHTML = DONE;
 		}
 
 		window.onload = start;
@@ -123,15 +333,234 @@
 			font-size: 5em;
 		}
 
-		#image {
-			height: 30%;
+		p {
+			padding: 0;
+			margin: 0.3em;
+		}
+
+		svg {
+			stroke: black;
+			stroke-width: 2;
+			fill: white;
+			fill-opacity: 0.7;
+			height: 50%;
+			display: none;
 		}
 	</style>
 </head>
 <body>
-	<p id="workout"></p>
-	<p id="next"></p>
-	<p id="time"></p>
-	<p><img id="image" href="#"/></p>
+	<p id="workout">&nbsp;</p>
+	<p id="next">&nbsp;</p>
+	<p id="time">0.0</p>
+	<p id="images">
+	<!-- Proportions form http://www.playsdk.com/files/images/g/human_standard_l.jpg -->
+	<svg id="front" viewBox="-1000 -1500 2000 2500"
+		version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<title>
+			Stick figure front
+		</title>
+
+		<g>
+			<animateTransform id="body_translate" attributeName="transform" type="translate" 
+				additive="sum" dur="2s" repeatCount="indefinite"/>
+			<animateTransform id="body_rotate" attributeName="transform" type="rotate" 
+				additive="sum" dur="2s" repeatCount="indefinite"/>
+			<line id="neck" y1="-455" y2="-640"/>
+			<ellipse id="head" cy="-650" rx="77" ry="110"/>
+			<polygon id="torso" points="0,0 -87,0 -175,-455 175,-455 87,0 "/>
+
+			<g transform="translate(-175 -455)">
+				<animateTransform id="left_shoulder" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="left_humeral" x2="-280" y2="0" />
+				<ellipse id="left_humeral" rx="160" ry="45" transform="translate(-140 0)"/>
+
+				<g transform="translate(-280 0)">
+					<animateTransform id="left_elbow" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="left_forearm" x2="-255" y2="0" />
+					<ellipse id="left_forearm" rx="135" ry="35" transform="translate(-127 0)"/>
+
+					<g transform="translate(-255 0)">
+						<animateTransform id="left_wrist" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="left_hand" x2="-190" y2="0" />
+						<ellipse id="left_hand" rx="100" ry="10" transform="translate(-95 0)"/>
+					</g>
+				</g>
+			</g>
+
+			<g transform="translate(175 -455)">
+				<animateTransform id="right_shoulder" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="right_humeral" x2="280" y2="0" />
+				<ellipse id="right_humeral" rx="160" ry="45" transform="translate(140 0)"/>
+
+				<g transform="translate(280 0)">
+					<animateTransform id="right_elbow" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="right_forearm" x2="255" y2="0" />
+					<ellipse id="right_forearm" rx="135" ry="35" transform="translate(127 0)"/>
+
+					<g transform="translate(255 0)">
+						<animateTransform id="right_wrist" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="right_hand" x2="190" y2="0" />
+						<ellipse id="right_hand" rx="100" ry="10" transform="translate(95 0)"/>
+					</g>
+				</g>
+			</g>
+
+			<g transform="translate(-87 0)">
+				<animateTransform id="left_hip" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="left_femoral" x2="0" y2="425" />
+				<ellipse id="left_femoral" rx="70" ry="235" transform="translate(0 212)"/>
+
+				<g transform="translate(0 425)">
+					<animateTransform id="left_knee" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="left_shank" x2="0" y2="410" />
+					<ellipse id="left_shank" rx="40" ry="205" transform="translate(0 205)"/>
+					
+					<g transform="translate(0 410)">
+						<animateTransform id="left_ankle" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="left_foot" x2="0" y2="90" />
+						<ellipse id="left_foot" rx="30" ry="50" transform="translate(0 45)"/>
+					</g>
+				</g>
+			</g>
+
+			<g transform="translate(87 0)">
+				<animateTransform id="right_hip" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="right_femoral" x2="0" y2="425" />
+				<ellipse id="right_femoral" rx="70" ry="235" transform="translate(0 212)"/>
+
+				<g transform="translate(0 425)">
+					<animateTransform id="right_knee" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="right_shank" x2="0" y2="410" />
+					<ellipse id="right_shank" rx="40" ry="205" transform="translate(0 205)"/>
+
+					<g transform="translate(0 410)">
+						<animateTransform id="right_ankle" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="right_foot" x2="0" y2="90" />
+						<ellipse id="right_foot" rx="30" ry="50" transform="translate(0 45)"/>
+					</g>
+				</g>
+			</g>
+		</g>
+
+		<line id="floor" stroke="black" x1="-1000" y1="930" x2="1000" y2="930" />
+	</svg>
+
+	<svg id="side" viewBox="-1000 -1500 2000 2500" 
+		version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<title>
+			Stick figure side
+		</title>
+		
+		<g id="body">
+			<g transform="translate(20 -455)">
+				<animateTransform id="left_shoulder" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="left_humeral" x2="280" y2="0" />
+				<ellipse id="left_humeral" rx="160" ry="45" transform="translate(140 0)"/>
+
+				<g transform="translate(280 0)">
+					<animateTransform id="left_elbow" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="left_forearm" x2="255" y2="0" />
+					<ellipse id="left_forearm" rx="135" ry="35" transform="translate(127 0)"/>
+
+					<g transform="translate(255 0)">
+						<animateTransform id="left_wrist" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="left_hand" x2="190" y2="0" />
+						<ellipse id="left_hand" rx="100" ry="10" transform="translate(95 0)"/>
+					</g>
+				</g>
+			</g>
+
+			<g transform="translate(20 0)">
+				<animateTransform id="left_hip" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="left_femoral" x2="0" y2="425" />
+				<ellipse id="left_femoral" rx="70" ry="235" transform="translate(0 212)"/>
+
+				<g transform="translate(0 425)">
+					<animateTransform id="left_knee" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="left_shank" x2="0" y2="410" />
+					<ellipse id="left_shank" rx="40" ry="205" transform="translate(0 205)"/>
+					
+					<g transform="translate(0 410)">
+						<animateTransform id="left_ankle" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="left_foot" x2="0" y2="90" />
+						<ellipse id="left_foot" rx="132" ry="50" transform="translate(100 45)"/>
+					</g>
+				</g>
+			</g>
+
+			<animateTransform id="body_translate" attributeName="transform" type="translate"
+				additive="sum" dur="2s" repeatCount="indefinite"/>
+			<animateTransform id="body_rotate" attributeName="transform" type="rotate"
+				additive="sum" dur="2s" repeatCount="indefinite"/>
+			<ellipse id="head" cy="-650" rx="95" ry="110"/>
+			<line id="neck" y1="-455" y2="-650"/>
+			<polygon id="torso" points="0,0 -100,0 -115,-455 115,-455 100,0 "/>
+
+
+			<g transform="translate(-20 0)">
+				<animateTransform id="right_hip" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="right_femoral" x2="0" y2="425" />
+				<ellipse id="right_femoral" rx="70" ry="235" transform="translate(0 212)"/>
+
+				<g transform="translate(0 425)">
+					<animateTransform id="right_knee" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="right_shank" x2="0" y2="410" />
+					<ellipse id="right_shank" rx="40" ry="205" transform="translate(0 205)"/>
+
+					<g transform="translate(0 410)">
+						<animateTransform id="right_ankle" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="right_foot" x2="0" y2="90" />
+						<ellipse id="right_foot" rx="132" ry="50" transform="translate(100 45)"/>
+					</g>
+				</g>
+			</g>
+
+
+			<g transform="translate(-20 -455)">
+				<animateTransform id="right_shoulder" attributeName="transform" type="rotate"
+					additive="sum" dur="2s" repeatCount="indefinite"/>
+				<line id="right_humeral" x2="280" y2="0" />
+				<ellipse id="right_humeral" rx="160" ry="45" transform="translate(140 0)"/>
+
+				<g transform="translate(280 0)">
+					<animateTransform id="right_elbow" attributeName="transform" type="rotate"
+						additive="sum" dur="2s" repeatCount="indefinite"/>
+					<line id="right_forearm" x2="255" y2="0" />
+					<ellipse id="right_forearm" rx="135" ry="35" transform="translate(127 0)"/>
+
+					<g transform="translate(255 0)">
+						<animateTransform id="right_wrist" attributeName="transform" type="rotate"
+							additive="sum" dur="2s" repeatCount="indefinite"/>
+						<line id="right_hand" x2="190" y2="0" />
+						<ellipse id="right_hand" rx="100" ry="10" transform="translate(95 0)"/>
+					</g>
+				</g>
+			</g>
+		</g>
+
+		<line id="floor" stroke="black" x1="-1000" y1="930" x2="1000" y2="930" />
+	</svg>
+	</p>
 </body>
 </html>
