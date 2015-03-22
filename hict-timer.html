@@ -46,7 +46,6 @@
 						left_elbow: "-90 ; 0 ; -90",
 						right_wrist: "-90 ; -70 ; -90",
 						left_wrist: "-90 ; -70 ; -90"
-
 					}
 				}
 			},
@@ -138,8 +137,10 @@
 						left_elbow: "0 ; -90 ; 0",
 						right_hip: "0 ; -90 ; 0",
 						left_hip: "-90 ; 0 ; -90",
-						right_knee: "0 ; 90 ; 0",
-						left_knee: "90 ; 0 ; 90"
+						right_knee: "0 ; 120 ; 0",
+						left_knee: "120 ; 0 ; 120",
+						right_ankle: "0 ; 30 ; 30 ; 30 ; 0",
+						left_ankle: "30 ; 30 ; 0 ; 30 ; 30"
 					}
 				}},
 			{name: "Lunge",
@@ -156,7 +157,9 @@
 						right_hip: "0 ; -90 ; 0 ",
 						left_hip: "0 ; 0 ; 0",
 						right_knee: "0 ; 110 ; 0",
-						left_knee: "0 ;	 110 ; 0 "
+						left_knee: "0 ;	 110 ; 0 ",
+						right_ankle: "0 ; -20 ; 0",
+						left_ankle: "0 ; -20 ; 0"
 					}
 				}},
 			{name: "Push-up and rotation",
@@ -191,7 +194,7 @@
 		];
 		var READY = "Get Ready!";
 		var PAUSE = "Pause";
-		var DONE = {name: "Done!", 
+		var DONE = {name: "Done!",
 					image: {
 						image: 'front',
 						animations: {
@@ -208,7 +211,7 @@
 		var WORKOUT_DURATION = 30000;
 		var PAUSE_DURATION = 10000;
 
-	    var ctx = new(window.audioContext || window.webkitAudioContext);
+		var ctx = new(window.audioContext || window.webkitAudioContext);
 
 		function start() {
 			set_current_text(READY);
@@ -257,15 +260,16 @@
 		function beep(type, duration) {
 			type = type || 0;
 			duration = duration || 100;
-	        var osc = ctx.createOscillator();
+			var osc = ctx.createOscillator();
 
-	        osc.type = type;
-	        osc.connect(ctx.destination);
-	        osc.noteOn(0);
+			osc.type = type;
+			osc.connect(ctx.destination);
+			osc.start(0);
 
-	        setTimeout(function() {
-	        	osc.noteOff(0);
-	        }, duration);
+			setTimeout(function() {
+				osc.stop(0);
+				osc.disconnect();
+			}, duration);
 		}
 
 		function set_current_text(text) {
@@ -280,7 +284,7 @@
 		function set_image(image) {
 			var images = document.getElementsByTagName('svg');
 			for (var i = 0; i < images.length; i++) {
-			    images[i].style.display = 'none';
+					images[i].style.display = 'none';
 			}
 
 			var svg = document.getElementById(image.image);
@@ -288,7 +292,7 @@
 
 			var transforms = document.getElementsByTagName('animateTransform');
 			for (var i = 0; i < transforms.length; i++) {
-			    transforms[i].setAttribute('values', '0');
+					transforms[i].setAttribute('values', '0');
 			}
 
 			for (var animation in image.animations) {
@@ -319,7 +323,6 @@
 
 	<style type="text/css">
 		body {
-			width: 100%;
 			text-align: center;
 			font-family: sans-serif;
 			padding: 2em;
@@ -345,6 +348,8 @@
 			fill-opacity: 0.7;
 			height: 50%;
 			display: none;
+			margin-left: auto;
+			margin-right: auto;
 		}
 	</style>
 </head>
@@ -352,7 +357,6 @@
 	<p id="workout">&nbsp;</p>
 	<p id="next">&nbsp;</p>
 	<p id="time">0.0</p>
-	<p id="images">
 	<!-- Proportions form http://www.playsdk.com/files/images/g/human_standard_l.jpg -->
 	<svg id="front" viewBox="-1000 -1500 2000 2500"
 		version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -361,9 +365,9 @@
 		</title>
 
 		<g>
-			<animateTransform id="body_translate" attributeName="transform" type="translate" 
+			<animateTransform id="body_translate" attributeName="transform" type="translate"
 				additive="sum" dur="2s" repeatCount="indefinite"/>
-			<animateTransform id="body_rotate" attributeName="transform" type="rotate" 
+			<animateTransform id="body_rotate" attributeName="transform" type="rotate"
 				additive="sum" dur="2s" repeatCount="indefinite"/>
 			<line id="neck" y1="-455" y2="-640"/>
 			<ellipse id="head" cy="-650" rx="77" ry="110"/>
@@ -422,7 +426,7 @@
 						additive="sum" dur="2s" repeatCount="indefinite"/>
 					<line id="left_shank" x2="0" y2="410" />
 					<ellipse id="left_shank" rx="40" ry="205" transform="translate(0 205)"/>
-					
+
 					<g transform="translate(0 410)">
 						<animateTransform id="left_ankle" attributeName="transform" type="rotate"
 							additive="sum" dur="2s" repeatCount="indefinite"/>
@@ -457,12 +461,12 @@
 		<line id="floor" stroke="black" x1="-1000" y1="930" x2="1000" y2="930" />
 	</svg>
 
-	<svg id="side" viewBox="-1000 -1500 2000 2500" 
+	<svg id="side" viewBox="-1000 -1500 2000 2500"
 		version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 		<title>
 			Stick figure side
 		</title>
-		
+
 		<g id="body">
 			<g transform="translate(20 -455)">
 				<animateTransform id="left_shoulder" attributeName="transform" type="rotate"
@@ -496,7 +500,7 @@
 						additive="sum" dur="2s" repeatCount="indefinite"/>
 					<line id="left_shank" x2="0" y2="410" />
 					<ellipse id="left_shank" rx="40" ry="205" transform="translate(0 205)"/>
-					
+
 					<g transform="translate(0 410)">
 						<animateTransform id="left_ankle" attributeName="transform" type="rotate"
 							additive="sum" dur="2s" repeatCount="indefinite"/>
@@ -561,6 +565,5 @@
 
 		<line id="floor" stroke="black" x1="-1000" y1="930" x2="1000" y2="930" />
 	</svg>
-	</p>
 </body>
 </html>
