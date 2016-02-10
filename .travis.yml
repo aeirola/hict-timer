@@ -1,0 +1,14 @@
+sudo: false
+language: node_js
+install: true
+script: true
+deploy:
+  provider: s3
+  access_key_id: AKIAISYI7G5NMM6GCF6Q
+  secret_access_key:
+    secure: P9a8zf5FFf1roxwpYDDNFgFy1ug2+wtnDr36WIOReQQy6IFg5sbHvzuk3u7sJ61wLnU6T5cAWCJ+IhF8IG34asKUDrN9Kn7hfTRIeqVI/Yb9UwgPfHccgLVdXu8Taif11JuChCo2VUZenAd4OMy1Ov22roTpsXgLWli437cddnM=
+  bucket: hict.aeirola.iki.fi
+  region: eu-central-1
+  acl: public_read
+  on:
+    repo: aeirola/hict-timer
