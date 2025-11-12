@@ -211,7 +211,7 @@
 		var WORKOUT_DURATION = 30000;
 		var PAUSE_DURATION = 10000;
 
-		var ctx = new(window.audioContext || window.webkitAudioContext);
+		var ctx = new (window.AudioContext || window.webkitAudioContext)();
 
 		function start() {
 			set_current_text(READY);
