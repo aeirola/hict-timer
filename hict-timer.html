@@ -262,7 +262,9 @@
 			duration = duration || 100;
 			var osc = ctx.createOscillator();
 
-			osc.type = type;
+			// Map numeric types to valid OscillatorType enum values
+			var typeMap = ['sine', 'square', 'sawtooth', 'triangle'];
+			osc.type = typeof type === 'number' ? typeMap[type] || 'sine' : type;
 			osc.connect(ctx.destination);
 			osc.start(0);
 
